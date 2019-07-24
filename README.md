@@ -2,6 +2,8 @@
 
 A little game inspired by Space Invaders.
 
+You can try it here: https://pmarkee.github.io/void-conquerors
+
 # How should I use it?
 
 Executables and/or a web version will be available in the future, until then you can use the Godot editor to import and try this game.
