@@ -1,23 +1,23 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://Projectile.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Alien.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Alien.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Projectile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ImageTexture" id=1]
 size = Vector2( 800, 800 )
 
 [node name="Background" type="TextureRect"]
-margin_right = 800.0
-margin_bottom = 800.0
+margin_left = 1.16638
+margin_top = 1.16635
+margin_right = 801.166
+margin_bottom = 801.166
 texture = SubResource( 1 )
 stretch_mode = 4
 script = ExtResource( 1 )
-Projectile = ExtResource( 2 )
-
-[node name="Alien" parent="." instance=ExtResource( 3 )]
-position = Vector2( 400, 50 )
+Alien = ExtResource( 2 )
+Projectile = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 400, 750 )

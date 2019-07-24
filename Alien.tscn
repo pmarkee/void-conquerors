@@ -15,7 +15,7 @@ animations = [ {
 extents = Vector2( 401.474, 291.533 )
 
 [node name="Alien" type="AnimatedSprite"]
-scale = Vector2( 0.07, 0.07 )
+scale = Vector2( 0.045, 0.045 )
 frames = SubResource( 1 )
 script = ExtResource( 2 )
 
