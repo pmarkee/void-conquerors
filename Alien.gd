@@ -8,3 +8,7 @@ func _ready():
 func _on_AlienBody_area_entered(area):
     emit_signal("die")
     queue_free()
+
+func move(vec):
+    # Move by a given vector.
+    self.position += vec

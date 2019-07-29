@@ -20,6 +20,7 @@ frames = SubResource( 1 )
 script = ExtResource( 2 )
 
 [node name="AlienBody" type="Area2D" parent="."]
+collision_mask = 0
 
 [node name="AlienShape" type="CollisionShape2D" parent="AlienBody"]
 shape = SubResource( 2 )

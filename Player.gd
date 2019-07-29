@@ -21,6 +21,7 @@ func _process(delta):
         velocity.x -= 1
     elif can_shoot and Input.is_action_just_pressed("ui_accept"):
         # Upon pressing spacebar, tell the Main scene that a shot has happened, then reset the shot timer.
+        # TODO enable shooting while moving.
         emit_signal("shoot")
         can_shoot = false
         $ShotTimer.start(0.5)

@@ -21,4 +21,7 @@ Projectile = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 400, 750 )
+
+[node name="AlienMoveTimer" type="Timer" parent="."]
 [connection signal="shoot" from="Player" to="." method="_on_Player_shoot"]
+[connection signal="timeout" from="AlienMoveTimer" to="." method="move_aliens"]
