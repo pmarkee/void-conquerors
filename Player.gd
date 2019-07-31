@@ -9,7 +9,7 @@ var can_shoot
 var screen_size
 
 func _ready():
-    screen_size = get_viewport_rect().size
+    screen_size = get_tree().get_root().get_node("Background").texture.size
     lives = max_lives
     can_shoot = true
 

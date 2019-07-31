@@ -10,8 +10,8 @@ export (PackedScene) var Projectile
 export var ALIEN_START_POS = Vector2(60, 60)
 export var HORIZONTAL_ALIEN_SPACING = 50
 export var VERTICAL_ALIEN_SPACING = 60
-export var HORIZONTAL_ALIEN_COUNT = 5
-export var VERTICAL_ALIEN_COUNT = 11
+export var HORIZONTAL_ALIEN_COUNT = 11
+export var VERTICAL_ALIEN_COUNT = 5
 
 # Move speed #
 # Initial time between moves (seconds).
@@ -52,8 +52,8 @@ func _ready():
 func instantiate_aliens():
     var alien
     var counter = 0
-    for i in range(HORIZONTAL_ALIEN_COUNT):
-        for j in range(VERTICAL_ALIEN_COUNT):
+    for i in range(VERTICAL_ALIEN_COUNT):
+        for j in range(HORIZONTAL_ALIEN_COUNT):
             # Instantiate a new alien, place them in a grid
             alien = Alien.instance()
             add_child(alien)
