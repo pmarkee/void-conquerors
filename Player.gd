@@ -1,8 +1,9 @@
 extends Sprite
 
+signal die
 signal shoot
 
-export var speed = 200
+export var speed = 300
 export var max_lives = 3
 var lives
 var can_shoot
@@ -24,7 +25,7 @@ func _process(delta):
         # TODO enable shooting while moving.
         emit_signal("shoot")
         can_shoot = false
-        $ShotTimer.start(0.5)
+        $ShotTimer.start(0.45)
 
     if velocity.length() > 0:
         velocity = velocity.normalized() * speed
@@ -35,3 +36,10 @@ func _process(delta):
 
 func _on_ShotTimer_timeout():
     can_shoot = true
+
+func _on_PlayerBody_area_entered(area):
+    print("ouch")
+    lives -= 1
+    if !lives:
+        emit_signal("die")
+        queue_free()

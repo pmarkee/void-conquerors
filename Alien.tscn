@@ -1,28 +1,28 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://art/alien1_1.png" type="Texture" id=1]
-[ext_resource path="res://art/alien1_2.png" type="Texture" id=2]
-[ext_resource path="res://art/alien3_1.png" type="Texture" id=3]
-[ext_resource path="res://art/alien3_2.png" type="Texture" id=4]
-[ext_resource path="res://art/alien2_1.png" type="Texture" id=5]
-[ext_resource path="res://art/alien2_2.png" type="Texture" id=6]
+[ext_resource path="res://art/alien3_1.png" type="Texture" id=1]
+[ext_resource path="res://art/alien3_2.png" type="Texture" id=2]
+[ext_resource path="res://art/alien2_1.png" type="Texture" id=3]
+[ext_resource path="res://art/alien2_2.png" type="Texture" id=4]
+[ext_resource path="res://art/alien1_1.png" type="Texture" id=5]
+[ext_resource path="res://art/alien1_2.png" type="Texture" id=6]
 [ext_resource path="res://Alien.gd" type="Script" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
 "loop": true,
-"name": "GREEN",
+"name": "RED",
 "speed": 1.0
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "RED",
+"name": "YELLOW",
 "speed": 1.0
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
-"name": "YELLOW",
+"name": "GREEN",
 "speed": 1.0
 } ]
 
@@ -35,8 +35,12 @@ animation = "GREEN"
 script = ExtResource( 7 )
 
 [node name="AlienBody" type="Area2D" parent="."]
-collision_mask = 0
+collision_layer = 4
+collision_mask = 2
 
 [node name="AlienShape" type="CollisionShape2D" parent="AlienBody"]
 shape = SubResource( 2 )
+
+[node name="AlienShotTimer" type="Timer" parent="."]
 [connection signal="area_entered" from="AlienBody" to="." method="_on_AlienBody_area_entered"]
+[connection signal="timeout" from="AlienShotTimer" to="." method="_on_AlienShotTimer_timeout"]

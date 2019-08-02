@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Alien.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Projectile.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://AlienProjectile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Projectile.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ImageTexture" id=1]
 size = Vector2( 800, 800 )
@@ -17,11 +18,13 @@ texture = SubResource( 1 )
 stretch_mode = 4
 script = ExtResource( 1 )
 Alien = ExtResource( 2 )
-Projectile = ExtResource( 3 )
+AlienProjectile = ExtResource( 3 )
+Projectile = ExtResource( 4 )
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
+[node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 400, 750 )
 
 [node name="AlienMoveTimer" type="Timer" parent="."]
+[connection signal="die" from="Player" to="." method="game_over"]
 [connection signal="shoot" from="Player" to="." method="_on_Player_shoot"]
 [connection signal="timeout" from="AlienMoveTimer" to="." method="move_aliens"]

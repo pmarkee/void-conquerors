@@ -1,6 +1,7 @@
 extends TextureRect
 
 export (PackedScene) var Alien
+export (PackedScene) var AlienProjectile
 export (PackedScene) var Projectile
 
 # TODO consider organizing some of these constant infos into an auto-load.
@@ -48,6 +49,7 @@ func _ready():
     alien_count = HORIZONTAL_ALIEN_COUNT * VERTICAL_ALIEN_COUNT
     instantiate_aliens()
     $AlienMoveTimer.start(current_move_time)
+    randomize()
 
 func instantiate_aliens():
     var alien
@@ -70,8 +72,11 @@ func instantiate_aliens():
                 print("SHIT HIT THE FAN")
 
             alien.set_animation(animation_type)
-            # Tell the game whenever an alien has died and stuff needs to be updated.
-            alien.connect("die", self, "_on_Alien_die")
+
+    # Tell the game whenever an alien has died and stuff needs to be updated.
+    get_tree().call_group("aliens", "connect", "die", self, "_on_Alien_die")
+    # Tell the game whenever an alien has shot and a projectile needs to be placed.
+    get_tree().call_group("aliens", "connect", "shoot", self, "_on_Alien_shoot")
 
 func move_aliens():
     # SOME NOTES ON THIS FUNCTION
@@ -108,6 +113,11 @@ func _on_Player_shoot():
     add_child(projectile)
     projectile.position = Vector2($Player.position.x, $Player.position.y - 50)
 
+func _on_Alien_shoot(who):
+    var alien_projectile = AlienProjectile.instance()
+    add_child(alien_projectile)
+    alien_projectile.position = Vector2(who.position.x, who.position.y + 50)
+
 func _on_Alien_die():
     # Increment score and reduce remaining alien count
     print("that's it, I'm dead")
@@ -124,3 +134,7 @@ func _on_Alien_die():
 func game_won():
     # TODO
     print("you won")
+
+func game_over():
+    # TODO
+    print("game over")
