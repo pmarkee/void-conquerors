@@ -3,7 +3,7 @@ extends AnimatedSprite
 # TODO this is only player projectile behavior yet
 # implement enemy projectile
 
-export var velocity = Vector2(0, -650)
+export var velocity = Vector2(0, -550)
 var screen_size
 
 func _ready():
