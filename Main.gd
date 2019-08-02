@@ -59,6 +59,17 @@ func instantiate_aliens():
             add_child(alien)
             alien.position = Vector2(ALIEN_START_POS.x + j * VERTICAL_ALIEN_SPACING,
                                      ALIEN_START_POS.y + i * HORIZONTAL_ALIEN_SPACING)
+            var animation_type
+            if i == 0:
+                animation_type = GlobalSharedContent.AlienType.RED
+            elif i in [1, 2]:
+                animation_type = GlobalSharedContent.AlienType.YELLOW
+            elif i in [3, 4]:
+                animation_type = GlobalSharedContent.AlienType.GREEN
+            else:
+                print("SHIT HIT THE FAN")
+
+            alien.set_animation(animation_type)
             # Tell the game whenever an alien has died and stuff needs to be updated.
             alien.connect("die", self, "_on_Alien_die")
 
