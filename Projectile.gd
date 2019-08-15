@@ -1,13 +1,9 @@
-extends AnimatedSprite
+extends Area2D
 
 # TODO this is only player projectile behavior yet
 # implement enemy projectile
 
 export var velocity = Vector2(0, -550)
-var screen_size
-
-func _ready():
-    screen_size = get_viewport_rect().size
 
 func _process(delta):
     position += velocity * delta
@@ -16,5 +12,5 @@ func _process(delta):
 func _on_VisibilityNotifier2D_screen_exited():
     queue_free()
 
-func _on_ProjectileBody_area_entered(area):
+func _on_Projectile_area_entered(area):
     queue_free()

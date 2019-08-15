@@ -1,4 +1,4 @@
-extends AnimatedSprite
+extends Area2D
 
 export var velocity = Vector2(0, 450)
 
@@ -9,5 +9,5 @@ func _process(delta):
 func _on_VisibilityNotifier2D_screen_exited():
     queue_free()
 
-func _on_AlienProjectileBody_area_entered(area):
+func _on_AlienProjectile_area_entered(area):
     queue_free()
