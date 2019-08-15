@@ -18,7 +18,7 @@ Alternatively you can import the project in the Godot editor and play it from th
 
 The player controls the little spaceship at the bottom of the screen. The goal is to shoot down all the aliens before they reach the Earth. If they all die, you win, otherwise you lose.
 
-The aliens start at the top of the screen and move in sort of an S-shape. They will make some amount of horizontal moves. After that, they will step down vertically, then move horizontally again, but this time in the other direction. The fewer of them there are, the faster they move. They will also be able to shoot projectiles at the player in the future, but currently they do not. (The exact details such as how many of them there are and the rules of their movement are subject to change later.)
+The aliens start at the top of the screen and move in sort of an S-shape. They will make some amount of horizontal moves. After that, they will step down vertically, then move horizontally again, but this time in the other direction. The fewer of them there are, the faster they move. They can also shoot their own projectiles at the player. If it hits, the player loses one life, if all lives are lost, the game is over. Game-over mechanic is not really implemented yet, so the player can't actually die at this point. (The exact details such as how many of them there are and the rules of their movement are subject to change later.)
 
 Controls:
 * movement: left and right arrows
