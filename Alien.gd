@@ -2,6 +2,7 @@ extends Area2D
 
 signal die
 signal shoot
+signal reached_bottom
 
 export var MIN_SHOOT_TIME = 5
 export var MAX_SHOOT_TIME = 120
@@ -16,6 +17,8 @@ func _ready():
 func move(vec):
     # Move by a given vector and update animation frame.
     self.position += vec
+    if self.position.y >= GlobalSharedContent.BOTTOM_POS:
+        emit_signal("reached_bottom")
     current_frame = (current_frame + 1) % NUM_FRAMES
     $AlienSprite.set_frame(current_frame)
 

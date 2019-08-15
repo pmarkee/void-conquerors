@@ -40,6 +40,7 @@ var current_move_dir = 1
 var total_alien_count = HORIZONTAL_ALIEN_COUNT * VERTICAL_ALIEN_COUNT
 var alien_count
 var aliens_dead = 0
+var is_game_over = false
 
 var score
 var hi_score
@@ -77,6 +78,8 @@ func instantiate_aliens():
     get_tree().call_group("aliens", "connect", "die", self, "_on_Alien_die")
     # Tell the game whenever an alien has shot and a projectile needs to be placed.
     get_tree().call_group("aliens", "connect", "shoot", self, "_on_Alien_shoot")
+    # Whenever any alien reaches the bottom, the game is over
+    get_tree().call_group("aliens", "connect", "reached_bottom", self, "game_over")
 
 func move_aliens():
     # SOME NOTES ON THIS FUNCTION
@@ -137,4 +140,7 @@ func game_won():
 
 func game_over():
     # TODO
-    print("game over")
+    if !is_game_over:
+        is_game_over = true
+        get_tree().call_group("aliens", "queue_free")
+        print("game over")
