@@ -30,6 +30,8 @@ position = Vector2( 400, 750 )
 [node name="AlienMoveTimer" type="Timer" parent="."]
 
 [node name="GameArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
 
 [node name="GameAreaShape" type="CollisionShape2D" parent="GameArea"]
 position = Vector2( 400, 400 )
@@ -37,4 +39,3 @@ shape = SubResource( 2 )
 [connection signal="die" from="Player" to="." method="game_over"]
 [connection signal="shoot" from="Player" to="." method="_on_Player_shoot"]
 [connection signal="timeout" from="AlienMoveTimer" to="." method="move_aliens"]
-[connection signal="area_exited" from="GameArea" to="." method="_on_GameArea_area_exited"]

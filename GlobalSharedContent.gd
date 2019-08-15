@@ -14,3 +14,5 @@ const ProjectileType = {
 }
 
 const PLAYER_SPRITE_SIZE = Vector2(45, 21)
+
+const BOTTOM_POS = 750
