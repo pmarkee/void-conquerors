@@ -12,3 +12,5 @@ const ProjectileType = {
     PLAYER = "PLAYER",
     ALIEN = "ALIEN"
 }
+
+const PLAYER_SPRITE_SIZE = Vector2(45, 21)
