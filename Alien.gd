@@ -11,6 +11,7 @@ export var NUM_FRAMES = 2
 var current_frame = 0
 
 func _ready():
+    add_to_group("enemies")
     add_to_group("aliens")
     $AlienShotTimer.start(rand_range(0, MAX_SHOOT_TIME + 1))
 
