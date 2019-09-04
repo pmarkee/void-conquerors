@@ -37,7 +37,7 @@ func _process(delta):
 func _on_ShotTimer_timeout():
     can_shoot = true
 
-func _on_PlayerBody_area_entered(area):
+func _on_Player_area_entered(area):
     print("ouch")
     lives -= 1
     if !lives:

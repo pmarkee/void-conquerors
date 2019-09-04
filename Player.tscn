@@ -18,5 +18,5 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="ShotTimer" type="Timer" parent="."]
-[connection signal="area_entered" from="." to="PlayerSprite" method="_on_PlayerBody_area_entered"]
+[connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]
 [connection signal="timeout" from="ShotTimer" to="." method="_on_ShotTimer_timeout"]
