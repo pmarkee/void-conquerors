@@ -2,6 +2,7 @@ extends TextureRect
 
 export (PackedScene) var Alien
 export (PackedScene) var AlienProjectile
+export (PackedScene) var Boss
 export (PackedScene) var Projectile
 
 # TODO consider organizing some of these constant infos into an auto-load.
@@ -36,6 +37,11 @@ var horizontal_steps_done = 1
 # +1 = positive change to x coordinate = move right
 var current_move_dir = 1
 
+# Boss spawning #
+var MIN_BOSS_SPAWN_TIME = 10
+var MAX_BOSS_SPAWN_TIME = 30
+var BOSS_MOVE_TIME = 1.0
+
 ### GENERAL GAME INFO ###
 var total_alien_count = HORIZONTAL_ALIEN_COUNT * VERTICAL_ALIEN_COUNT
 var alien_count
@@ -50,6 +56,8 @@ func _ready():
     alien_count = HORIZONTAL_ALIEN_COUNT * VERTICAL_ALIEN_COUNT
     instantiate_aliens()
     $AlienMoveTimer.start(current_move_time)
+    $BossSpawnTimer.start(rand_range(MIN_BOSS_SPAWN_TIME, MAX_BOSS_SPAWN_TIME))
+    $BossMoveTimer.start(BOSS_MOVE_TIME)
     randomize()
 
 func instantiate_aliens():
@@ -110,6 +118,23 @@ func move_aliens():
 
     $AlienMoveTimer.start(current_move_time)
 
+func spawn_boss():
+    var boss = Boss.instance()
+    add_child(boss)
+    boss.add_to_group("enemies")
+    boss.connect("die", self, "_on_Boss_die")
+
+    # If this random number is 0 that means the boss will be going left to right and vice-versa
+    var direction = randi() % 2
+    boss.position = Vector2(775 if direction else 25, 25)
+    boss.direction = direction
+
+    $BossSpawnTimer.start(rand_range(MIN_BOSS_SPAWN_TIME, MAX_BOSS_SPAWN_TIME))
+
+func move_bosses():
+    get_tree().call_group("bosses", "move")
+    $BossMoveTimer.start(1.0)
+
 func _on_Player_shoot():
     # Instantiate a projectile and place it above the player.
     var projectile = Projectile.instance()
@@ -134,13 +159,22 @@ func _on_Alien_die():
     if aliens_dead == 0:
         current_move_time -= REDUCE_BY
 
+func _on_Boss_die():
+    # Just increment score
+    score += 3
+    print("boss dead")
+
 func game_won():
     # TODO
+    clear()
     print("you won")
 
 func game_over():
     # TODO
+    clear()
+    print("game over")
+
+func clear():
     if !is_game_over:
         is_game_over = true
-        get_tree().call_group("aliens", "queue_free")
-        print("game over")
+        get_tree().call_group("enemies", "queue_free")

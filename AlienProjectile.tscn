@@ -26,7 +26,6 @@ shape = SubResource( 1 )
 
 [node name="AlienProjectileSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
